@@ -1,84 +1,86 @@
 package com.company.dynamicDoubleArray;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class DynamicDoubleArray {
-    private static double array[];
+public class DynamicDoubleArray <T> {
+    private T array[];
 
     public DynamicDoubleArray() {
     }
 
 
     public DynamicDoubleArray(int length) {
-        array = new double[length];
+        this.array = (T[]) new Object[length];
     }
 
-    public double[] addElement(double element) {
+    public T[] addElement(T element) {
         if (isZeroLength()) {
-            return array = addElementInEmptyArray(element);
+            return this.array = addElementInEmptyArray(element);
         } else {
-            return array = addElementInFilledArray(element);
+            return this.array = addElementInFilledArray(element);
         }
     }
 
-    public double getElement(int index) throws IndexOutOfBoundsException {
+    public T getElement(int index) throws IndexOutOfBoundsException {
         if (isIndexIncludeInArray(index)) {
-            return array[index];
+            return this.array[index];
         } else {
             throw new IndexOutOfBoundsException(" index '" + index + "' is located outside the array boundary");
         }
     }
 
-    public double[] removeElement(int index) throws IndexOutOfBoundsException {
+    public T[] removeElement(int index) throws IndexOutOfBoundsException {
         if (isZeroLength() || !isIndexIncludeInArray(index)) {
             throw new IndexOutOfBoundsException(" index '" + index + "' is located outside the array boundary");
         }
-        return array = overwriteDeletedElement(index);
+        return this.array = overwriteDeletedElement(index);
     }
 
-    public double[] overwriteDeletedElement(int index) {
-        double[] newArray = new double[array.length - 1];
+    public T[] overwriteDeletedElement(int index) {
+       T[] newArray =(T[]) new Object[this.array.length - 1];
         for (int i = 0; i < newArray.length; i++) {
             if (i < index) {
-                newArray[i] = array[i];
+                newArray[i] = this.array[i];
             }
             else{
-                newArray[i]=array[i+1];
+                newArray[i]=this.array[i+1];
             }
         }
         return newArray;
     }
 
     public boolean isIndexIncludeInArray(int index) {
-        if (index < array.length && index > -1) {
+        if (index < this.array.length && index > -1) {
             return true;
         }
         return false;
     }
 
     public boolean isZeroLength() {
-        if (array == null) {
+        if (this.array == null) {
             return true;
         }
         return false;
     }
 
-    public double[] addElementInEmptyArray(double element) {
-        double[] newArray = {element};
+    public T[] addElementInEmptyArray(T element) {
+        T[] newArray = (T[]) new Object[1];
+        newArray[0]=element;
         return newArray;
     }
 
-    public double[] addElementInFilledArray(double element) {
-        double[] newArray = overwriteAddedElement();
+    public T[] addElementInFilledArray(T element) {
+        T[] newArray = overwriteAddedElement();
         newArray[newArray.length - 1] = element;
         return newArray;
     }
 
 
-    public double[] overwriteAddedElement() {
-        double[] newArray = new double[array.length + 1];
-        for (int i = 0; i < array.length; i++) {
-            newArray[i] = array[i];
+    public T[] overwriteAddedElement() {
+        T[] newArray = (T[]) new Object[this.array.length + 1];
+        for (int i = 0; i < this.array.length; i++) {
+            newArray[i] = this.array[i];
         }
         return newArray;
     }
@@ -87,7 +89,7 @@ public class DynamicDoubleArray {
     @Override
     public String toString() {
         return "DynamicDoubleArray{" +
-                "array=" + Arrays.toString(array) +
+                "array=" + Arrays.toString(this.array) +
                 '}';
     }
 

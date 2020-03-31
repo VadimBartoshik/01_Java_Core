@@ -10,6 +10,9 @@ public class Main {
         array.addElement(5.6);
         array.addElement(1.8);
         array.addElement(2.2);
+        array.addElement("t");
+        array.addElement(300);
+        System.out.println(array.getElement(3));
         try {
            array.removeElement(2);
         }

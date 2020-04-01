@@ -3,6 +3,11 @@ package com.company.Task3;
 import java.util.Date;
 
 public class Teacher extends People {
+
+    public Teacher(){
+
+    }
+
     public Teacher(String surName, String name, int age) {
         super(surName, name, age);
     }

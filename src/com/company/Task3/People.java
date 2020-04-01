@@ -7,7 +7,9 @@ public class People {
     private String name;
     private int age;
 
+public People(){
 
+}
     public People(String surName, String name, int age) {
         this.surName = surName;
         this.name = name;

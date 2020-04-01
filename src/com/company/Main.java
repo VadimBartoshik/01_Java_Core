@@ -6,9 +6,10 @@ import com.company.dynamicDoubleArray.DynamicDoubleArray;
 
 public class Main {
 
-    public static void main(String[] args) {
-	// write your code here
-        People student= new Student("Бартошик","Вадим", 17);
+    public static void main(String[] args) throws ClassNotFoundException {
+        // write your code here
+      //  People student = new Student("Бартошик", "Вадим", 17);
+        Class<?> student =Class.forName("Student");
 
     }
 }
